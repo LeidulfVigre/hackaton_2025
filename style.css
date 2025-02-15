@@ -60,6 +60,7 @@ main {
     grid-template-columns: repeat(10, 1fr);
     grid-template-rows: repeat(10, 1fr);
     position: relative;
+    outline: 1px solid black;
 }
 
 #graf {

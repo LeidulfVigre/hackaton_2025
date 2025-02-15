@@ -118,6 +118,7 @@ document.addEventListener("DOMContentLoaded", function() {
         sendData();
     });
 
+    
     async function sendData() {
         // Hent data fra inputfeltene
         const skydekke = document.getElementById("skydekke").value;
@@ -168,5 +169,6 @@ document.addEventListener("DOMContentLoaded", function() {
             console.error("Feil ved sending av data:", error);
         }
     }
+    sendData();
     
 });
