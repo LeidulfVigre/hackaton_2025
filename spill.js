@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", function() {
             bilde.classList.remove("visible");
             antall.value = 0;
         }
+        sendData();
     });
 
     // sjekker om sjekkboksen for solenergi er endret
@@ -29,6 +30,7 @@ document.addEventListener("DOMContentLoaded", function() {
             bilde.classList.remove("visible");
             antall.value = 0;
         }
+        sendData();
     });
 
     //sjekker vindboksen
@@ -45,6 +47,7 @@ document.addEventListener("DOMContentLoaded", function() {
             bilde.classList.remove("visible");
             antall.value = 0;
         }
+        sendData();
     });
 
     //sjekker atomkraftverk
@@ -60,6 +63,7 @@ document.addEventListener("DOMContentLoaded", function() {
             bilde.classList.remove("visible");
             antall.value = 0;
         }
+        sendData();
     });
 
     //sjekker kullkraftverk
@@ -76,6 +80,7 @@ document.addEventListener("DOMContentLoaded", function() {
             bilde.classList.remove("visible");
             antall.value = 0;
         }
+        sendData();
     });
 
     //endre verdi på slider vind
@@ -84,6 +89,7 @@ document.addEventListener("DOMContentLoaded", function() {
         let slider = document.getElementById("vindstyrke");
         let output = document.getElementById("vind_variasjons_tall");
         output.innerHTML = slider.value;
+        sendData();
     });
 
     // endre verdi på variasjonstall
@@ -92,6 +98,7 @@ document.addEventListener("DOMContentLoaded", function() {
         let slider = document.getElementById("variasjon");
         let output = document.getElementById("variasjons_tall");
         output.innerHTML = (slider.value * 100).toFixed(0);
+        sendData();
     });
 
     // endre verdi på slider temperatur
@@ -100,6 +107,7 @@ document.addEventListener("DOMContentLoaded", function() {
         let slider = document.getElementById("temperatur");
         let output = document.getElementById("temperatur_variasjons_tall");
         output.innerHTML = slider.value;
+        sendData();
     });
 
     //endre verdi på skydekke
@@ -107,5 +115,58 @@ document.addEventListener("DOMContentLoaded", function() {
         let slider = document.getElementById("skydekke");
         let output = document.getElementById("skydekke_variasjons_tall");
         output.innerHTML = (slider.value*100).toFixed(0);
+        sendData();
     });
+
+    async function sendData() {
+        // Hent data fra inputfeltene
+        const skydekke = document.getElementById("skydekke").value;
+        const temperatur = document.getElementById("temperatur").value;
+        const variasjon = document.getElementById("variasjon").value;
+        const vindstyrke = document.getElementById("vindstyrke").value;
+    
+        // Kraftverksdata
+        const vannkraft = document.getElementById("vannkraft_mengde").value;
+        const solcelle = document.getElementById("solcelle_mengde").value;
+        const vindkraft = document.getElementById("vindkraft_mengde").value;
+        const atomkraft = document.getElementById("atomkraft_mengde").value;
+        const kullkraft = document.getElementById("kullkraft_mengde").value;
+    
+        // Lag et objekt med all dataen
+        const data = {
+            skydekke,
+            temperatur,
+            variasjon,
+            vindstyrke,
+            vannkraft,
+            solcelle,
+            vindkraft,
+            atomkraft,
+            kullkraft
+        };
+    
+        try {
+            // Send dataen til serveren
+            const response = await fetch("/din-endepunkt-url", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            });
+    
+            if (!response.ok) {
+                throw new Error("Server returnerte en feil");
+            }
+    
+            // Mottar HTML-snippet som respons
+            const htmlSnippet = await response.text();
+    
+            // Sett HTML-snippet inn i en container
+            document.getElementById("graf").innerHTML = htmlSnippet;
+        } catch (error) {
+            console.error("Feil ved sending av data:", error);
+        }
+    }
+    
 });
