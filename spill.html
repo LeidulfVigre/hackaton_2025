@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="style.css">
     <title>Hackathon 2025</title>
+    <script src="spill.js"></script>
+
 </head>
 <body>
 
@@ -52,26 +54,69 @@
         </div>
     </div>
     <div id="kraftkilde_mengde_dropdown">
-            
+        <div class="input_mengde">
+            <label for="vannkraft_mengde">Antall vannkraftverk:</label><br>
+            <input type="number" id="vannkraft_mengde" name="vannkraft_mengde" min="0" max="10" value="0">
+        </div>
+
+        <div class="input_mengde">
+            <label for="solcelle_mengde">Antall solcellepaneler:</label><br>
+            <input type="number" id="solcelle_mengde" name="solcelle_mengde" min="0" max="1000000" value="0">
+        </div>
+
+        <div class="input_mengde">
+            <label for="vindkraft_mengde">Antall vindmøller: </label><br>
+            <input type="number" id="vindkraft_mengde" name="vindkraft_mengde" min="0" max="100000" value="0">
+        </div>
+
+        <div class="input_mengde">
+            <label for="atomkraft_mengde">Antall atomkraftverk:</label><br>
+            <input type="number" id="atomkraft_mengde" name="atomkraft_mengde" min="0" max="5" value="0">
+        </div>
+
+        <div class="input_mengde">
+            <label for="kullkraft_mengde">Antall kullkraftverk:</label><br>
+            <input type="number" id="kullkraft_mengde" name="kullkraft_mengde" min="0" max="10">
+        </div>
+
     </div>
     <div id="været_konteiner">
-    </div>
+        <h2>Vær innstillinger</h2>
+        <div class="skydekke_valg">
+            <label for="skydekke">skydekke [%]: tall </label> <br>
+            <input type="range" id="skydekke" name="vær" value="sol" min="0" max="1" step="0.1" value="0">
+        </div>
+
+        <div class="temperatur_valg">
+            <label for="temperatur">temperatur [°C]: tall </label> <br>
+            <input type="range" id="temperatur" name="temperatur" value="20" min="-10" max="40" step="1">
+        </div>
+
+        <div class="vindstyrke_valg">
+            <label for="vindstyrke">vindstyrke [m/s]: tall </label> <br>
+            <input type="range" id="vindstyrke" name="vindstyrke" value="0" min="0" max="40" step="1">
+        </div>
+
+        <div class="variasjon">
+            <label for="variasjon">variasjon [%]: tall </label> <br>
+            <input type="range" id="variasjon" name="variasjon" value="0" min="0" max="1" step="0.1">
+        </div>
 
 </header>
 <main>
     <div id="kart">
-        <div id ="solcelle" class="bilde">
+        <div id ="solcelleb" class="bilde hidden">
 
         </div>
-        <div id="vind" class="bilde">
+        <div id="vindb" class="bilde hidden">
 
         </div>
-        <div id="vannkraft" class="bilde">
+        <div id="vannkraftb" class="bilde hidden">
         
         </div>
-        <div id="atomkraftverk" class="bilde">
+        <div id="atomkraftverkb" class="bilde hidden">
         </div>
-        <div id="kullkraftverk" class="bilde">
+        <div id="kullkraftverkb" class="bilde">
         </div>
     </div>
     <div id="graf">
