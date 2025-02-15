@@ -147,7 +147,7 @@ document.addEventListener("DOMContentLoaded", function() {
     
         try {
             // Send dataen til serveren
-            const response = await fetch("/din-endepunkt-url", {
+            const response = await fetch("http://127.0.0.1:8000/send_data", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
